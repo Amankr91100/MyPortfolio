@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
+import { SocialLinks } from "./SocialLinks";
+import profileImg from "@/assets/profile.jpg";
 
 const ROLES = [
   "Aspiring Software Developer",
