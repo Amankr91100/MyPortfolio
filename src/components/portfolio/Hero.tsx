@@ -51,6 +51,28 @@ export function Hero() {
     >
       <div className="container mx-auto max-w-5xl px-6 text-center">
         <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, type: "spring" }}
+          className="mx-auto mb-8 flex justify-center"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-gradient-primary blur-2xl opacity-60 animate-pulse" />
+            <div className="relative h-36 w-36 overflow-hidden rounded-full border-2 border-primary/40 p-1 shadow-glow md:h-44 md:w-44">
+              <div className="h-full w-full overflow-hidden rounded-full bg-card">
+                <img
+                  src={profileImg}
+                  alt="Portrait of Your Name, B.Tech CSE student and developer"
+                  width={768}
+                  height={768}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
