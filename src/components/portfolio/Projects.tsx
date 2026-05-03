@@ -61,8 +61,9 @@ export function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/40 p-7 backdrop-blur transition-smooth hover:-translate-y-2 hover:border-primary/50 hover:shadow-glow"
+              className="hover-tilt group relative overflow-hidden rounded-2xl border border-border bg-card/40 p-7 backdrop-blur transition-smooth hover:border-primary/50 hover:shadow-glow"
             >
+              <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 shimmer-overlay" />
               <div
                 className={`absolute -right-20 -top-20 h-48 w-48 rounded-full bg-gradient-to-br ${p.gradient} opacity-50 blur-3xl transition-smooth group-hover:opacity-90`}
               />
