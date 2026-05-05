@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Download, Mail, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, ChevronDown, Code2, Download, Mail, Sparkles, Zap } from "lucide-react";
 import { SocialLinks } from "./SocialLinks";
 import profileImg from "@/assets/profile.jpg";
 
@@ -14,6 +14,15 @@ const ROLES = [
 const TECH_TICKER = [
   "React", "TypeScript", "Node.js", "Next.js", "Tailwind", "Python",
   "C++", "MongoDB", "PostgreSQL", "Docker", "Git", "AWS",
+];
+
+const FLOATING_BADGES = [
+  { label: "{ }", x: "8%", y: "22%", delay: 0 },
+  { label: "</>", x: "88%", y: "18%", delay: 1.2 },
+  { label: "λ", x: "6%", y: "68%", delay: 2.4 },
+  { label: "⚡", x: "92%", y: "62%", delay: 0.6 },
+  { label: "#!", x: "12%", y: "44%", delay: 1.8 },
+  { label: "→", x: "90%", y: "40%", delay: 3 },
 ];
 
 function useTyping(words: string[], speed = 80, pause = 1500) {
@@ -48,28 +57,85 @@ function useTyping(words: string[], speed = 80, pause = 1500) {
 
 export function Hero() {
   const typed = useTyping(ROLES);
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Parallax cursor tracking
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 60, damping: 20 });
+  const sy = useSpring(my, { stiffness: 60, damping: 20 });
+  const blob1X = useTransform(sx, (v) => v * 30);
+  const blob1Y = useTransform(sy, (v) => v * 30);
+  const blob2X = useTransform(sx, (v) => v * -40);
+  const blob2Y = useTransform(sy, (v) => v * -40);
+  const tiltX = useTransform(sy, (v) => v * -8);
+  const tiltY = useTransform(sx, (v) => v * 8);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      mx.set((e.clientX - r.left) / r.width - 0.5);
+      my.set((e.clientY - r.top) / r.height - 0.5);
+    };
+    el.addEventListener("mousemove", onMove);
+    return () => el.removeEventListener("mousemove", onMove);
+  }, [mx, my]);
+
+  const headline = "Your Name".split("");
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-hero pt-24"
     >
       {/* Tech grid backdrop */}
       <div className="pointer-events-none absolute inset-0 bg-grid" />
 
-      {/* Aurora blobs */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-primary/25 blur-[120px] animate-aurora" />
-      <div
-        className="pointer-events-none absolute right-[-10%] top-1/3 h-[420px] w-[420px] rounded-full bg-accent-purple/25 blur-[120px] animate-aurora"
-        style={{ animationDelay: "3s" }}
+      {/* Aurora blobs — parallax */}
+      <motion.div
+        style={{ x: blob1X, y: blob1Y }}
+        className="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-primary/25 blur-[120px] animate-aurora"
       />
-      <div
+      <motion.div
+        style={{ x: blob2X, y: blob2Y, animationDelay: "3s" }}
+        className="pointer-events-none absolute right-[-10%] top-1/3 h-[420px] w-[420px] rounded-full bg-accent-purple/25 blur-[120px] animate-aurora"
+      />
+      <motion.div
+        style={{ x: blob1X, y: blob2Y, animationDelay: "6s" }}
         className="pointer-events-none absolute left-[-10%] bottom-0 h-[420px] w-[420px] rounded-full bg-accent-blue/25 blur-[120px] animate-aurora"
-        style={{ animationDelay: "6s" }}
       />
 
-      <div className="container relative z-10 mx-auto max-w-5xl px-6 text-center">
-        {/* Avatar with rotating conic ring */}
+      {/* Floating code badges */}
+      {FLOATING_BADGES.map((b, i) => (
+        <motion.div
+          key={i}
+          aria-hidden
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 0.7, 0.7, 0.4, 0.7],
+            scale: 1,
+            y: [0, -14, 0, 14, 0],
+          }}
+          transition={{
+            opacity: { duration: 1, delay: b.delay },
+            scale: { duration: 0.8, delay: b.delay },
+            y: { duration: 8, delay: b.delay, repeat: Infinity, ease: "easeInOut" },
+          }}
+          style={{ left: b.x, top: b.y }}
+          className="pointer-events-none absolute hidden font-mono text-2xl text-primary/60 md:block"
+        >
+          {b.label}
+        </motion.div>
+      ))}
+
+      <motion.div
+        style={{ rotateX: tiltX, rotateY: tiltY, transformPerspective: 1200 }}
+        className="container relative z-10 mx-auto max-w-5xl px-6 text-center"
+      >
+        {/* Avatar with rotating conic ring + orbiting dots */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -78,6 +144,11 @@ export function Hero() {
         >
           <div className="relative">
             <div className="absolute -inset-4 rounded-full bg-gradient-primary opacity-30 blur-2xl animate-glow-pulse" />
+            {/* Orbit ring */}
+            <div className="absolute -inset-6 rounded-full border border-primary/20 animate-spin-slow" style={{ animationDuration: "20s" }}>
+              <div className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-primary shadow-glow" />
+              <div className="absolute -bottom-1.5 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-accent-purple" />
+            </div>
             <div className="relative h-40 w-40 md:h-48 md:w-48">
               <div
                 className="absolute inset-0 rounded-full animate-spin-slow"
@@ -114,23 +185,48 @@ export function Hero() {
           Available for internships · Summer 2026
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl"
-        >
-          Hi, I'm{" "}
-          <span className="text-gradient animate-gradient relative inline-block">
-            Your Name
-            <span className="absolute -inset-2 -z-10 bg-gradient-primary opacity-20 blur-2xl" />
+        {/* Headline with per-letter reveal */}
+        <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mr-3 inline-block"
+          >
+            Hi, I'm
+          </motion.span>
+          <span className="relative inline-block">
+            <span className="text-gradient animate-gradient">
+              {headline.map((c, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 60, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.3 + i * 0.06,
+                    ease: [0.2, 0.8, 0.2, 1],
+                  }}
+                  className="inline-block"
+                  style={{ transformOrigin: "50% 100%" }}
+                >
+                  {c === " " ? "\u00A0" : c}
+                </motion.span>
+              ))}
+            </span>
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="absolute -inset-2 -z-10 origin-left bg-gradient-primary opacity-20 blur-2xl"
+            />
           </span>
-        </motion.h1>
+        </h1>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
           className="mt-6 flex flex-wrap items-center justify-center gap-x-3 font-mono text-base md:text-xl"
         >
           <span className="text-muted-foreground">B.Tech CSE Student</span>
@@ -144,7 +240,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 1.25 }}
           className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg"
         >
           Passionate about building elegant software, solving real-world problems with code,
@@ -155,7 +251,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <a
@@ -184,7 +280,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 1.55 }}
           className="mt-8"
         >
           <SocialLinks />
@@ -194,22 +290,28 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.85 }}
-          className="mx-auto mt-12 grid max-w-2xl grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-card/30 backdrop-blur"
+          transition={{ duration: 0.6, delay: 1.7 }}
+          className="mx-auto mt-12 grid max-w-2xl grid-cols-3 divide-x divide-border overflow-hidden rounded-2xl border border-border bg-card/30 backdrop-blur"
         >
           {[
-            { k: "15+", v: "Projects" },
-            { k: "300+", v: "DSA Solved" },
-            { k: "8.5", v: "CGPA" },
-          ].map((s) => (
-            <div key={s.v} className="px-4 py-4">
+            { k: "15+", v: "Projects", icon: Code2 },
+            { k: "300+", v: "DSA Solved", icon: Zap },
+            { k: "8.5", v: "CGPA", icon: Sparkles },
+          ].map((s, i) => (
+            <motion.div
+              key={s.v}
+              whileHover={{ y: -4 }}
+              className="group relative px-4 py-4"
+            >
+              <s.icon className="mx-auto mb-1 h-3.5 w-3.5 text-primary/70 transition-colors group-hover:text-primary" />
               <div className="font-display text-2xl font-bold text-gradient md:text-3xl">
                 {s.k}
               </div>
               <div className="mt-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                 {s.v}
               </div>
-            </div>
+              <div className="absolute inset-x-0 bottom-0 h-px origin-center scale-x-0 bg-gradient-to-r from-transparent via-primary to-transparent transition-transform duration-500 group-hover:scale-x-100" />
+            </motion.div>
           ))}
         </motion.div>
 
@@ -222,7 +324,7 @@ export function Hero() {
           <span className="font-mono text-[10px] uppercase tracking-[0.3em]">scroll</span>
           <ChevronDown className="h-4 w-4 animate-scroll-hint" />
         </a>
-      </div>
+      </motion.div>
 
       {/* Tech marquee */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 overflow-hidden border-t border-border/50 bg-background/40 py-3 backdrop-blur">
