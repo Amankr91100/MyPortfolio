@@ -1,54 +1,43 @@
 import { motion } from "framer-motion";
-import { Code, Globe, Wrench, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
-const categories = [
-  {
-    title: "Languages",
-    icon: Code,
-    accent: "from-violet-500 to-fuchsia-500",
-    skills: [
-      { name: "C++", level: 90 },
-      { name: "JavaScript / TypeScript", level: 85 },
-      { name: "Python", level: 75 },
-      { name: "Java", level: 70 },
-    ],
-  },
-  {
-    title: "Web Development",
-    icon: Globe,
-    accent: "from-cyan-400 to-blue-500",
-    skills: [
-      { name: "React", level: 88 },
-      { name: "Node.js / Express", level: 80 },
-      { name: "HTML / CSS / Tailwind", level: 92 },
-      { name: "MongoDB / SQL", level: 72 },
-    ],
-  },
-  {
-    title: "Tools & Tech",
-    icon: Wrench,
-    accent: "from-amber-400 to-orange-500",
-    skills: [
-      { name: "Git / GitHub", level: 88 },
-      { name: "Data Structures & Algorithms", level: 85 },
-      { name: "Linux / Bash", level: 70 },
-      { name: "Docker / CI-CD", level: 60 },
-    ],
-  },
+type Skill = { name: string; slug: string; color: string };
+
+const skills: Skill[] = [
+  { name: "HTML5", slug: "html5", color: "E34F26" },
+  { name: "CSS3", slug: "css3", color: "1572B6" },
+  { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
+  { name: "JavaScript", slug: "javascript", color: "F7DF1E" },
+  { name: "TypeScript", slug: "typescript", color: "3178C6" },
+  { name: "React", slug: "react", color: "61DAFB" },
+  { name: "Next.js", slug: "nextdotjs", color: "FFFFFF" },
+  { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
+  { name: "Express", slug: "express", color: "FFFFFF" },
+  { name: "MongoDB", slug: "mongodb", color: "47A248" },
+  { name: "MySQL", slug: "mysql", color: "4479A1" },
+  { name: "Python", slug: "python", color: "3776AB" },
+  { name: "C++", slug: "cplusplus", color: "00599C" },
+  { name: "Java", slug: "openjdk", color: "FFFFFF" },
+  { name: "Git", slug: "git", color: "F05032" },
+  { name: "GitHub", slug: "github", color: "FFFFFF" },
+  { name: "Docker", slug: "docker", color: "2496ED" },
+  { name: "Linux", slug: "linux", color: "FCC624" },
+  { name: "Figma", slug: "figma", color: "F24E1E" },
+  { name: "Postman", slug: "postman", color: "FF6C37" },
 ];
-
-const orbit = ["React", "TS", "Node", "C++", "Py", "Git", "SQL", "AWS"];
 
 export function Skills() {
   return (
     <section id="skills" className="relative py-32">
-      {/* background grid */}
-      <div className="pointer-events-none absolute inset-0 bg-grid opacity-40" />
+      {/* atmosphere */}
+      <div className="pointer-events-none absolute inset-0 bg-grid opacity-30" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute right-1/3 top-0 h-72 w-72 rounded-full bg-accent-purple/15 blur-[120px] animate-aurora" />
+        <div className="absolute left-1/4 top-10 h-80 w-80 rounded-full bg-primary/15 blur-[140px] animate-aurora" />
+        <div className="absolute right-1/4 bottom-10 h-80 w-80 rounded-full bg-accent-purple/15 blur-[140px] animate-aurora" />
       </div>
 
       <div className="container relative mx-auto max-w-6xl px-6">
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -64,93 +53,83 @@ export function Skills() {
             My <span className="text-gradient animate-gradient">technical toolkit</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            A curated stack I reach for when turning ideas into shipped product.
+            Technologies & tools I build with — every day.
           </p>
           <div className="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-primary to-transparent" />
         </motion.div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {categories.map((cat, i) => (
+        {/* Skill grid */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {skills.map((s, i) => (
             <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              whileHover={{ y: -8 }}
-              className="glass group relative overflow-hidden rounded-2xl p-6 transition-smooth hover:shadow-glow"
+              key={s.name}
+              initial={{ opacity: 0, y: 24, scale: 0.92 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.5,
+                delay: (i % 10) * 0.05,
+                ease: [0.2, 0.8, 0.2, 1],
+              }}
+              whileHover={{ y: -6 }}
+              className="group relative"
             >
-              {/* gradient border on hover */}
-              <div className={`absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br ${cat.accent} opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20`} />
-              {/* corner accent */}
-              <div className={`absolute -right-16 -top-16 h-32 w-32 rounded-full bg-gradient-to-br ${cat.accent} opacity-20 blur-2xl`} />
+              {/* gradient border */}
+              <div
+                className="absolute -inset-px rounded-2xl opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-70"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, #${s.color}80, transparent 70%)`,
+                }}
+              />
 
-              <div className="mb-6 flex items-center gap-3">
-                <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${cat.accent} text-white shadow-lg`}>
-                  <cat.icon className="h-5 w-5" />
-                </div>
-                <h3 className="font-display text-lg font-semibold">{cat.title}</h3>
-              </div>
+              <div className="relative flex h-full flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-card/40 p-5 backdrop-blur-xl transition-smooth group-hover:border-white/20">
+                {/* shimmer sweep */}
+                <div className="shimmer-overlay absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              <div className="space-y-5">
-                {cat.skills.map((s, j) => (
-                  <div key={s.name}>
-                    <div className="mb-2 flex items-center justify-between text-sm">
-                      <span className="font-medium">{s.name}</span>
-                      <span className="font-mono text-xs text-muted-foreground">
-                        {s.level}%
-                      </span>
-                    </div>
-                    <div className="relative h-1.5 overflow-hidden rounded-full bg-secondary/60">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${s.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: 0.2 + j * 0.1, ease: [0.2, 0.8, 0.2, 1] }}
-                        className={`relative h-full rounded-full bg-gradient-to-r ${cat.accent}`}
-                      >
-                        <div className="absolute inset-0 shimmer-overlay" />
-                      </motion.div>
-                    </div>
-                  </div>
-                ))}
+                {/* glow halo behind icon */}
+                <div
+                  className="absolute left-1/2 top-6 h-16 w-16 -translate-x-1/2 rounded-full opacity-30 blur-2xl transition-all duration-500 group-hover:opacity-80 group-hover:scale-125"
+                  style={{ background: `#${s.color}` }}
+                />
+
+                <motion.div
+                  whileHover={{ rotate: [0, -8, 8, 0], scale: 1.15 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative flex h-14 w-14 items-center justify-center"
+                >
+                  <img
+                    src={`https://cdn.simpleicons.org/${s.slug}/${s.color}`}
+                    alt={`${s.name} logo`}
+                    loading="lazy"
+                    className="h-12 w-12 drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]"
+                  />
+                </motion.div>
+
+                <span className="relative font-display text-sm font-semibold tracking-wide">
+                  {s.name}
+                </span>
+
+                {/* bottom accent bar */}
+                <div
+                  className="absolute inset-x-4 bottom-0 h-px origin-center scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                  style={{
+                    background: `linear-gradient(90deg, transparent, #${s.color}, transparent)`,
+                  }}
+                />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Orbiting skill chips */}
+        {/* marquee tagline */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative mx-auto mt-20 hidden h-72 w-72 md:block"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-14 text-center font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground"
         >
-          <div className="absolute inset-0 rounded-full border border-dashed border-white/10" />
-          <div className="absolute inset-8 rounded-full border border-dashed border-white/10" />
-          <div className="absolute inset-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-primary shadow-glow animate-glow-pulse flex items-center justify-center">
-            <span className="font-display text-xl font-bold text-primary-foreground">DEV</span>
-          </div>
-          <div className="absolute inset-0 animate-spin-slow">
-            {orbit.map((tech, i) => {
-              const angle = (i / orbit.length) * 2 * Math.PI;
-              const r = 130;
-              const x = Math.cos(angle) * r;
-              const y = Math.sin(angle) * r;
-              return (
-                <div
-                  key={tech}
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  style={{ transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }}
-                >
-                  <div className="glass flex h-12 w-12 items-center justify-center rounded-full font-mono text-xs font-semibold shadow-elegant">
-                    {tech}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          — always learning · always building —
         </motion.div>
       </div>
     </section>
