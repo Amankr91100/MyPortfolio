@@ -83,19 +83,7 @@ function ProjectCard({ p, i }: { p: (typeof projects)[number]; i: number }) {
       style={{ rotateX: rx, rotateY: ry, transformPerspective: 1200 }}
       className="group relative"
     >
-      {/* Animated gradient border */}
-      <div
-        className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${p.accent} opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-70`}
-      />
-      <div className="relative overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur-xl">
-        {/* Floating gradient orb that follows cursor */}
-        <motion.div
-          className={`pointer-events-none absolute -inset-20 bg-gradient-to-br ${p.accent} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-30`}
-          style={{
-            x: useTransform(mx, [-0.5, 0.5], [-40, 40]),
-            y: useTransform(my, [-0.5, 0.5], [-40, 40]),
-          }}
-        />
+      <div className="relative overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur-xl transition-colors duration-500 group-hover:border-border">
 
         {/* Grid texture */}
         <div className="absolute inset-0 bg-grid opacity-30" />
