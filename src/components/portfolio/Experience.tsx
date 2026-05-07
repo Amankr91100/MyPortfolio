@@ -141,13 +141,7 @@ export function Experience() {
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       className="group relative"
                     >
-                      {/* gradient border glow */}
-                      <div
-                        className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${it.accent} opacity-0 blur-md transition-opacity duration-500 group-hover:opacity-60`}
-                      />
-                      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-7 backdrop-blur-xl">
-                        {/* corner decoration */}
-                        <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-gradient-to-br from-primary/20 to-transparent blur-2xl transition-all duration-500 group-hover:scale-150" />
+                      <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-7 backdrop-blur-xl transition-colors duration-500 group-hover:border-border">
 
                         {/* header row */}
                         <div className="flex items-start justify-between gap-4">
