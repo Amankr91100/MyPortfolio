@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown, Code2, Download, Mail, Sparkles, Zap } from "lucide-react";
 import { SocialLinks } from "./SocialLinks";
-import profileImg from "@/assets/profile.jpg";
+import amanProfile from "@/assets/aman-profile.jpg.asset.json";
 
 const ROLES = [
   "Aspiring Software Developer",
