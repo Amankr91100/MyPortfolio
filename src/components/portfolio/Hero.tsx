@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, ChevronDown, Code2, Download, Mail, Sparkles, Zap } from "lucide-react";
 import { SocialLinks } from "./SocialLinks";
-import profileImg from "@/assets/profile.jpg";
+import amanProfile from "@/assets/aman-profile.jpg.asset.json";
 
 const ROLES = [
   "Aspiring Software Developer",
@@ -159,7 +159,7 @@ export function Hero() {
               />
               <div className="absolute inset-[3px] overflow-hidden rounded-full bg-card">
                 <img
-                  src={profileImg}
+                  src={amanProfile.url}
                   alt="Portrait of Aman Kumar, B.Tech CSE student and developer"
                   width={768}
                   height={768}
