@@ -64,20 +64,20 @@ export function Contact() {
               {
                 icon: Mail,
                 label: "Email",
-                value: "yourname@email.com",
-                href: "mailto:yourname@email.com",
+                value: "amankr91100@gmail.com",
+                href: "mailto:amankr91100@gmail.com",
               },
               {
                 icon: Linkedin,
                 label: "LinkedIn",
-                value: "linkedin.com/in/yourname",
-                href: "https://linkedin.com",
+                value: "linkedin.com/in/amankr91100",
+                href: "https://www.linkedin.com/in/amankr91100/",
               },
               {
                 icon: Github,
                 label: "GitHub",
-                value: "github.com/yourname",
-                href: "https://github.com",
+                value: "github.com/Amankr91100",
+                href: "https://github.com/Amankr91100",
               },
             ].map((c) => (
               <a
