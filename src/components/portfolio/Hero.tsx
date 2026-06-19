@@ -12,8 +12,8 @@ const ROLES = [
 ];
 
 const TECH_TICKER = [
-  "React", "TypeScript", "Node.js", "Next.js", "Tailwind", "Python",
-  "C++", "MongoDB", "PostgreSQL", "Docker", "Git", "AWS",
+  "React", "TypeScript", "Node.js", "Tailwind", "Python",
+  "C++", "MongoDB", "Express", "Git", "JavaScript",
 ];
 
 const FLOATING_BADGES = [
@@ -83,7 +83,7 @@ export function Hero() {
     return () => el.removeEventListener("mousemove", onMove);
   }, [mx, my]);
 
-  const headline = "Your Name".split("");
+  const headline = "Aman Kumar".split("");
 
   return (
     <section
@@ -160,7 +160,7 @@ export function Hero() {
               <div className="absolute inset-[3px] overflow-hidden rounded-full bg-card">
                 <img
                   src={profileImg}
-                  alt="Portrait of Your Name, B.Tech CSE student and developer"
+                  alt="Portrait of Aman Kumar, B.Tech CSE student and developer"
                   width={768}
                   height={768}
                   className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
@@ -295,8 +295,8 @@ export function Hero() {
         >
           {[
             { k: "15+", v: "Projects", icon: Code2 },
-            { k: "300+", v: "DSA Solved", icon: Zap },
-            { k: "8.5", v: "CGPA", icon: Sparkles },
+            { k: "100+", v: "DSA Solved", icon: Zap },
+            { k: "8.0", v: "CGPA", icon: Sparkles },
           ].map((s, i) => (
             <motion.div
               key={s.v}

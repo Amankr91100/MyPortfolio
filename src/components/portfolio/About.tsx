@@ -24,10 +24,10 @@ const highlights = [
 ];
 
 const stats = [
-  { value: "300+", label: "DSA Solved" },
-  { value: "20+", label: "Projects" },
-  { value: "8.5", label: "CGPA" },
-  { value: "3+", label: "Internships" },
+  { value: "100+", label: "DSA Solved" },
+  { value: "15+", label: "Projects" },
+  { value: "8.0", label: "CGPA" },
+  { value: "OSS", label: "Contributor" },
 ];
 
 function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
