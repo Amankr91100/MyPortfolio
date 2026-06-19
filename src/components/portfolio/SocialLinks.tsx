@@ -15,10 +15,10 @@ function LeetCodeIcon({ className }: { className?: string }) {
 }
 
 const socials = [
-  { icon: Github, href: "https://github.com/yourname", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/yourname", label: "LinkedIn" },
-  { icon: LeetCodeIcon, href: "https://leetcode.com/yourname", label: "LeetCode" },
-  { icon: Mail, href: "mailto:yourname@email.com", label: "Email" },
+  { icon: Github, href: "https://github.com/Amankr91100", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/amankr91100/", label: "LinkedIn" },
+  { icon: LeetCodeIcon, href: "https://leetcode.com/u/amankr91100/", label: "LeetCode" },
+  { icon: Mail, href: "mailto:amankr91100@gmail.com", label: "Email" },
 ];
 
 export function SocialLinks({ size = "md" }: { size?: "sm" | "md" }) {
