@@ -159,7 +159,7 @@ export function Hero() {
               />
               <div className="absolute inset-[3px] overflow-hidden rounded-full bg-card">
                 <img
-                  src={profileImg}
+                  src={amanProfile.url}
                   alt="Portrait of Aman Kumar, B.Tech CSE student and developer"
                   width={768}
                   height={768}
