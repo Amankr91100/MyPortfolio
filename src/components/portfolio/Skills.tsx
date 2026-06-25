@@ -12,14 +12,11 @@ const skills: Skill[] = [
   { name: "React", slug: "react", color: "61DAFB" },
   { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
   { name: "Express", slug: "express", color: "FFFFFF" },
+  { name: "FastAPI", slug: "fastapi", color: "009688" },
   { name: "MongoDB", slug: "mongodb", color: "47A248" },
-  { name: "MySQL", slug: "mysql", color: "4479A1" },
-  { name: "Python", slug: "python", color: "3776AB" },
-  { name: "C++", slug: "cplusplus", color: "00599C" },
   { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
   { name: "MySQL", slug: "mysql", color: "4479A1" },
   { name: "Supabase", slug: "supabase", color: "3FCF8E" },
-  { name: "FastAPI", slug: "fastapi", color: "009688" },
   { name: "Python", slug: "python", color: "3776AB" },
   { name: "C++", slug: "cplusplus", color: "00599C" },
   { name: "Scikit-learn", slug: "scikitlearn", color: "F7931E" },
@@ -28,6 +25,8 @@ const skills: Skill[] = [
   { name: "Git", slug: "git", color: "F05032" },
   { name: "GitHub", slug: "github", color: "FFFFFF" },
   { name: "Postman", slug: "postman", color: "FF6C37" },
+];
+
 
 export function Skills() {
   return (
