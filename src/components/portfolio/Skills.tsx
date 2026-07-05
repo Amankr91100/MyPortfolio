@@ -5,7 +5,7 @@ type Skill = { name: string; slug: string; color: string };
 
 const skills: Skill[] = [
   { name: "HTML5", slug: "html5", color: "E34F26" },
-  { name: "CSS3", slug: "css3", color: "1572B6" },
+  { name: "CSS", slug: "css", color: "1572B6" },
   { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
   { name: "JavaScript", slug: "javascript", color: "F7DF1E" },
   { name: "TypeScript", slug: "typescript", color: "3178C6" },
