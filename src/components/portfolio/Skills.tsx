@@ -14,7 +14,6 @@ const skills: Skill[] = [
   { name: "Express", slug: "express", color: "FFFFFF" },
   { name: "FastAPI", slug: "fastapi", color: "009688" },
   { name: "MongoDB", slug: "mongodb", color: "47A248" },
-  { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
   { name: "MySQL", slug: "mysql", color: "4479A1" },
   { name: "Supabase", slug: "supabase", color: "3FCF8E" },
   { name: "Python", slug: "python", color: "3776AB" },
