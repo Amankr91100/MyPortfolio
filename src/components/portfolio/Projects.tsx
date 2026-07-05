@@ -110,6 +110,8 @@ function ProjectCard({ p, i }: { p: (typeof projects)[number]; i: number }) {
             </div>
             <motion.a
               href={p.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Live demo"
               animate={{ rotate: hovered ? 0 : -45 }}
               transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
