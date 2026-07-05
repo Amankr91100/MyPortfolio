@@ -110,6 +110,8 @@ function ProjectCard({ p, i }: { p: (typeof projects)[number]; i: number }) {
             </div>
             <motion.a
               href={p.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Live demo"
               animate={{ rotate: hovered ? 0 : -45 }}
               transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
@@ -141,6 +143,8 @@ function ProjectCard({ p, i }: { p: (typeof projects)[number]; i: number }) {
           <div className="flex items-center justify-between border-t border-border/50 pt-5">
             <a
               href={p.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group/link flex items-center gap-2 font-mono text-xs text-muted-foreground transition-smooth hover:text-foreground"
             >
               <Github className="h-4 w-4" />
@@ -149,6 +153,8 @@ function ProjectCard({ p, i }: { p: (typeof projects)[number]; i: number }) {
             </a>
             <a
               href={p.demo}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group/link flex items-center gap-2 font-mono text-xs text-foreground"
             >
               <span>view case study</span>

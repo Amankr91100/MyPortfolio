@@ -83,6 +83,8 @@ export function Contact() {
               <a
                 key={c.label}
                 href={c.href}
+                target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
                 className="glass flex items-center gap-4 rounded-2xl p-4 transition-smooth hover:-translate-y-0.5 hover:shadow-glow"
               >
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground">
