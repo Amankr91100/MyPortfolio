@@ -270,7 +270,9 @@ export function Hero() {
           </a>
           <a
             href="/resume.pdf"
-            download
+            download="Aman-Kumar-Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-smooth hover:border-primary hover:text-primary"
           >
             <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" /> Resume
