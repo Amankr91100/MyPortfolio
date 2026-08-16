@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Award, Briefcase, GraduationCap, Sparkles, ArrowUpRight } from "lucide-react";
+import { Award, GraduationCap, Sparkles, Trophy, Github, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 const items = [
@@ -17,29 +17,43 @@ const items = [
     ],
   },
   {
-    icon: Briefcase,
-    period: "2025",
-    title: "Open Source Contributor",
-    org: "Girl Script Summer of Code (GSSoC)",
-    desc: "Actively contributed to open-source projects during GSSoC. Fixed bugs, added features, and collaborated with maintainers and developers across the community.",
+    icon: Github,
+    period: "2026",
+    title: "Social Summer of Code",
+    org: "Open Source Contributor",
+    desc: "Resolved responsive header and navigation issues in an open-source React/TypeScript project. Enhanced frontend components and successfully merged Pull Request #141 through Git branching, commits, and code review workflow.",
     tag: "open source",
     accent: "from-accent-blue to-primary",
     stats: [
-      { k: "Merged", v: "10+" },
-      { k: "Repos", v: "4" },
+      { k: "PR", v: "#141" },
+      { k: "Role", v: "Frontend" },
+    ],
+    link: "https://github.com/niharika-mente/DevEvent_Tracker/pull/141",
+  },
+  {
+    icon: Trophy,
+    period: "2026",
+    title: "India Innovates Hackathon",
+    org: "Top 10 / 10,000 participants · New Delhi, India",
+    desc: "Secured a top 10 rank in a national-level hackathon conducted with the Delhi Government. Demonstrated strong problem-solving, rapid prototyping, and teamwork under intense time pressure.",
+    tag: "achievement",
+    accent: "from-accent-purple to-accent-blue",
+    stats: [
+      { k: "Rank", v: "Top 10" },
+      { k: "Scale", v: "National" },
     ],
   },
   {
     icon: Award,
     period: "2026",
-    title: "Finalist · India Innovates Hackathon",
-    org: "Top 10 out of 1200+ teams",
-    desc: "Recognized for building an innovative solution under intense time pressure. Demonstrated strong problem-solving, teamwork, and rapid prototyping skills.",
+    title: "GirlScript Summer of Code",
+    org: "Open Source Contributor",
+    desc: "Selected as an Open Source Contributor for a national-level program, contributing to real-world software projects through collaborative development and community engagement.",
     tag: "achievement",
-    accent: "from-accent-purple to-accent-blue",
+    accent: "from-primary to-accent-blue",
     stats: [
-      { k: "Rank", v: "Top 10" },
-      { k: "Teams", v: "1200+" },
+      { k: "Program", v: "National" },
+      { k: "Role", v: "Contributor" },
     ],
   },
 ];
@@ -161,7 +175,17 @@ export function Experience() {
                         </h3>
                         <p className="mt-1 flex items-center gap-1.5 text-sm font-medium text-foreground/70">
                           {it.org}
-                          <ArrowUpRight className="h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                          {it.link && (
+                            <a
+                              href={it.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="Open link"
+                              className="inline-flex items-center"
+                            >
+                              <ArrowUpRight className="h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                            </a>
+                          )}
                         </p>
 
                         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
