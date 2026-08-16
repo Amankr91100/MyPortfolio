@@ -5,36 +5,36 @@ import { useState, type MouseEvent } from "react";
 const projects = [
   {
     num: "01",
-    title: "CivicSync",
-    tagline: "AI Civic Intelligence",
-    desc: "Developed responsive admin dashboards during a national-level hackathon, enabling real-time tracking and visualization of civic workforce activities — improving monitoring efficiency by 30%. Integrated 8+ RESTful APIs and collaborated on an AI-driven workforce management platform using Scikit-learn for intelligent task allocation.",
-    tech: ["React.js", "Node.js", "FastAPI", "PostgreSQL", "Scikit-learn"],
-    github: "https://github.com/Amankr91100/CivicSync",
-    demo: "https://civicsync-ai.vercel.app/",
+    title: "DocSphere",
+    tagline: "Enterprise RAG Assistant",
+    desc: "Engineered a context-aware enterprise knowledge assistant enabling HR and employees to retrieve information from internal documents through semantic search and Top-5 cosine-similarity retrieval. Built a multi-PDF RAG pipeline with OpenAI embeddings, page-level parsing, source citations, and exact-page navigation. Designed 2-role RBAC with JWT, protected REST APIs, an admin dashboard for document management, and persistent conversation handling with context-grounded follow-ups.",
+    tech: ["React", "Node.js", "MongoDB", "OpenAI", "RAG", "JWT"],
+    github: "https://github.com/Amankr91100/enterprise-ai-assistant",
+    demo: "https://enterprise-ai-assistant-frontend-auaz.onrender.com",
     accent: "from-primary via-accent-purple to-accent-blue",
-    year: "2025",
+    year: "2026",
     status: "Live",
   },
   {
     num: "02",
-    title: "DocQuery AI",
-    tagline: "RAG-Based Document Chatbot",
-    desc: "Engineered a RAG-based AI chatbot delivering accurate, context-aware responses with response latency under 1 second. Built a document ingestion pipeline using chunking and embeddings, improving retrieval accuracy by 30% through prompt optimization and semantic search.",
-    tech: ["LangChain", "OpenAI API", "FAISS", "Pinecone"],
-    github: "https://github.com/Amankr91100/DocQuery-AI",
-    demo: "https://doc-query-ai-zeta.vercel.app/",
+    title: "InterviewIQ",
+    tagline: "AI Mock Interview Platform",
+    desc: "Architected an AI-powered interview preparation platform generating 5 role-specific technical/HR questions with progressive difficulty and 90–150 sec timed voice/text interviews. Implemented AI-driven evaluation across 3 performance metrics with 0–10 scoring, personalized feedback, and question-level analytics. Built a workflow with resume analysis, secure authentication, credit-based access, Razorpay payments, interview history, and PDF reports.",
+    tech: ["React", "Node.js", "MongoDB", "OpenRouter", "Firebase", "Razorpay"],
+    github: "https://github.com/Amankr91100/interviewIQ",
+    demo: "https://interviewiq-client-9k8e.onrender.com/",
     accent: "from-accent-blue via-primary to-accent-purple",
-    year: "2025",
+    year: "2026",
     status: "Live",
   },
   {
     num: "03",
-    title: "Readify",
-    tagline: "AI Smart Reading Platform",
-    desc: "Architected an AI-powered reading platform with a bookshelf-style UI to upload, organize, and interact with digital books. Integrated LLM-driven summarization, key insights, and 'Chat with Book' (RAG Q&A) — reducing reading time by 40%. Scalable backend with Supabase + PostgreSQL, semantic search, and real-time reading progress tracking.",
-    tech: ["React", "Supabase", "PostgreSQL", "OpenAI API"],
-    github: "https://github.com/Amankr91100/Readify-AI",
-    demo: "https://readify-ai-three.vercel.app/",
+    title: "CivicSync",
+    tagline: "Smart Workforce Management",
+    desc: "Built responsive React.js dashboards for real-time workforce monitoring, task tracking, performance visualization, and geo-tagged field activity analysis. Integrated 8+ RESTful APIs using Node.js and FastAPI for workforce, task, and activity management. Developed PostgreSQL-backed services and applied Scikit-learn models for intelligent task allocation and worker performance scoring.",
+    tech: ["React.js", "Node.js", "FastAPI", "PostgreSQL", "Scikit-learn"],
+    github: "https://github.com/Amankr91100/CivicSync",
+    demo: "https://civicsync-ai.vercel.app/",
     accent: "from-accent-purple via-accent-blue to-primary",
     year: "2025",
     status: "Live",
@@ -225,7 +225,9 @@ export function Projects() {
         >
           <p className="font-mono text-sm text-muted-foreground">— more on the way —</p>
           <a
-            href="#"
+            href="https://github.com/Amankr91100"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-3 rounded-full border border-border bg-card/40 px-6 py-3 backdrop-blur transition-smooth hover:border-primary/50 hover:shadow-glow"
           >
             <Github className="h-4 w-4" />
