@@ -26,9 +26,19 @@ export function Contact() {
     }
     setErrors({});
     setSending(true);
-    await new Promise((r) => setTimeout(r, 800));
+
+    const { name, email, message } = result.data;
+    const subject = `Portfolio contact from ${name}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const mailto = `mailto:amankr91100@gmail.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    // Opens the visitor's email client with the message pre-filled
+    window.open(mailto, "_blank");
+
     setSending(false);
-    toast.success("Message sent! I'll get back to you soon.");
+    toast.success("Opening your email app with the message ready to send!");
     setForm({ name: "", email: "", message: "" });
   };
 
