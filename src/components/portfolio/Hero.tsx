@@ -5,7 +5,7 @@ import { SocialLinks } from "./SocialLinks";
 const amanProfile = { url: "/aman-profile.png" };
 
 const ROLES = [
-  "Aspiring Software Developer",
+  "GenAI Developer",
   "Problem Solver",
   "Full-Stack Enthusiast",
   "DSA Practitioner",
